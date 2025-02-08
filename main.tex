@@ -1,0 +1,193 @@
+%!TEX program = pdflatex
+%!TeX encoding = UTF-8
+%!TeX spellcheck = en_US
+\documentclass[12pt]{article}
+\usepackage[a4paper,margin=1in]{geometry} % Control page layout, \newgeometry{} & \restoregeometry
+\usepackage{pdflscape} % Landscape environment for landscape view of PDF instead of portrait
+\usepackage{changepage} % wider abstract
+\usepackage[title,titletoc,header]{appendix} % Appendices environment
+%\def\appendixname{附录}
+\usepackage{soul} % Spacing & underline: \ul -> underline
+
+% References
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,unicode}
+\usepackage[backend=biber,style=numeric,sorting=ynt,citestyle=numeric-comp,autocite=inline]{biblatex}
+\addbibresource{ref.bib}
+
+% Math
+\usepackage{amsmath, amsfonts} % Basic math equations & fonts
+\usepackage{mathrsfs} % Ralph Smith’s Formal Script, \mathscr{F}
+\usepackage{siunitx} % SI units
+%\SI{5.2}{\kilo\watt\hour}, \SIrange{9}{12}{\hour}
+%\si{\kilo\gram}
+\sisetup{range-phrase={-}}
+\usepackage{isomath} % ISO math format
+\let\mat\boldsymbol
+%$\mat{A}$ print bold italic matrix A
+\usepackage{physics} % Physics equations
+%vectors: \vb{} for bold, \va{} for arrowed, \vu{} for unit, \norm{} for norm
+%\abs{} for absolute value, \Pr() for probability, \var{x-x_0} for variation
+%Differential: \dd[n]{x}, \dd(\cos[2](x))
+%Derivative: \dv{x}, \dv[n]{f}{x}, \dv{t}(\grande e^x)
+%Partial: \pdv{x}, \pdv[n]{f}{x}
+%Cal3: \grad{\va{a}}, \div{\va{a}}, \curl{\va{a}}, \laplacian{\va{a}}
+\usepackage{esvect} % Beautiful vector
+%$\vv{AB}$ for vector AB
+\usepackage{xfrac} % Inline fraction
+%\sfrac{1}{2} for inline 1/2
+
+% Tables
+\usepackage{tabularx,array} % Tabularx environment in array environment for costomized tables, e.g. \multicolumn
+\usepackage{booktabs} % For \hline in tabularx environment with \toprule \midrule \bottomrule, partial rules with \cmidrule(lr){2-3}
+\usepackage{multicol,multirow} % For \multicolumn{cols}{pos}{text} & \multirow{number of rows}{width or *}{text} in tabularx environment
+\usepackage{longtable} % For tables that span multiple pages
+\usepackage{colortbl} % Use color in table rows
+
+% Figures & Animations
+\usepackage{float} % Force tables, figures, pseudocode, etc. to stay EXACTLY where there're inserted with H
+\usepackage{graphicx} % Insert picture with \includegraphics{}
+\usepackage{subfigure} % Insert subfigures with subfigure environment
+\usepackage{animate} % Insert animations with \animategraphics[options]{frame rate}{file basename}{first}{last}
+
+% Color
+\usepackage{color,xcolor}
+% Code color
+\definecolor{vsblue}{RGB}{0,0,255} % Keywords
+\definecolor{vsgreen}{RGB}{0,128,0} % string
+\definecolor{vscomment}{RGB}{106,115,125} % Comments
+\definecolor{vspurple}{RGB}{175,0,219} % True, False, None
+\definecolor{vsorange}{RGB}{200,75,49} % int, str, etc.
+\definecolor{vscyan}{RGB}{0,122,204} % __init__, self
+\definecolor{vsoperator}{RGB}{215,58,73} % Operators
+% Table color
+\definecolor{lightblue}{HTML}{F8FCFF}
+\definecolor{saturatedlightblue}{HTML}{F4FAFF}
+
+% Code
+\usepackage{algpseudocode}
+\usepackage[vlined,ruled,linesnumbered]{algorithm2e}
+\usepackage{algorithmicx}
+\usepackage{listings}
+\lstset{
+	% set frame
+	frame={shadowbox},
+	frameround=tttt,
+	backgroundcolor=\color{lightblue},
+	rulecolor=\color{gray},
+	numbers=left, % Line numbers
+	numbersep=5pt, % Line number spacing
+	stepnumber=1, % Line number every 4 lines
+	% detect language
+	language=Python,
+	stringstyle=\color{vsgreen},
+	numberstyle=\color{black},
+	keywordstyle=\bfseries\color{vsblue},
+	keywords=[2]{True, False, None}, keywordstyle=[2]\bfseries\color{vspurple},
+	identifierstyle=\color{black!90}, % Variables/function names
+	emph={__init__, self}, % Special identifiers
+	emphstyle=\color{vscyan}, % Teal special identifiers
+	morekeywords=[3]{int, str, list, tuple, set, dist}, keywordstyle=[3]\bfseries\color{vsorange},
+	% text format
+	columns=flexible,
+	basicstyle=\ttfamily\small\color{black},
+	commentstyle=\color{vscomment},
+	tabsize=3,
+	breaklines=true, % Enable link breaking
+	breakatwhitespace=true, % Allow breaks at whitespace
+	showstringspaces=false % Hide string space markers
+}
+
+% Header & footer
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{Paper}
+\fancyfoot[C]{\thepage}
+\usepackage{caption} % Costomize caption
+\captionsetup[figure]{font={small},
+	labelfont=bf,
+	labelsep=space,
+	%name=,
+	position=below,
+	justification=centering}
+\captionsetup[table]{font={small},
+	labelfont=bf,
+	labelsep=space,
+	%name=,
+	position=above,
+	justification=centering}
+
+\begin{document}
+	\title{Temp}
+	\maketitle
+	\begin{adjustwidth}{-1cm}{-1cm}
+		\begin{abstract}
+			temp
+			\\
+			\noindent\textbf{Keywords: }
+		\end{abstract}
+	\end{adjustwidth}
+
+	%\newpage
+	%\tableofcontents
+
+	\newpage
+	\section{Introduction}
+
+%	\begin{table}[H]
+%		\caption{核心参数的符号说明}
+%		\zihao{-4}
+%		\centering
+%		\renewcommand{\arraystretch}{0.8}
+%		\begin{tabular}{>{\zihao{5}}l>{\zihao{5}}l>{\zihao{5}}l}
+%			\hline
+%			\rowcolor{lightblue} \textbf{符号} & \textbf{意义} & \textbf{单位} \\
+%			\hline
+%			\rowcolor{saturatedlightblue} $T_I/\mathbf{T}$ & 计算任务$T_I\in$任务集合$\mathbf{T}$，可分为绿电$T_G$或传统电能$T_T$供电 & \\
+%			\rowcolor{lightblue} $j/\mathbf{J}$ & 分为高、中、低三种的任务优先级类型索引$j\in$类型集合$\mathbf{J}$ & \\
+%			\rowcolor{saturatedlightblue} $t/\mathbf{H}$ & 时刻$t\in$\SI{24}{\hour}时间集合$\mathbf{H}$，$\mathbf{H}=\{0,1,\ldots,23\}$ & \si{\hour} \\
+%			\rowcolor{lightblue} $w_i/\mathbf{W}$ & 第$i$个时间窗口$w_i\in$时间窗口集合$\mathbf{W}$ & \si{\hour} \\
+%			\rowcolor{saturatedlightblue} $D_I$ & 处理每个任务$T_I$可容忍的延时 & \si{\hour} \\
+%			\rowcolor{lightblue} $c_i/\mathbf{c}$ & 第$i$个服务器集群$c_i\in$服务器集群集合$\mathbf{c}$ & \\
+%			\rowcolor{saturatedlightblue} $N_c$ & 计算中心所有服务器集群总数量 & 个 \\
+%			\rowcolor{lightblue} $\epsilon$ & 鲁棒性函数误差变量 & \\
+%			\rowcolor{saturatedlightblue} $\xi$ & 分布鲁棒约束的容忍阈值（允许的违约概率上限），$\xi=0.05$ & \\
+%			\hline
+%		\end{tabular}
+%		\label{table: parameters definitions}
+%	\end{table}
+
+
+%	\begin{align}
+%		\label{equation: submodel two LP}
+%		& \min \sum_{t \in \mathbf{H}} \sum_{j \in \mathbf{J}} p_T(t)\cdot E_G(t)\nonumber \\
+%		\text{s.t.}&
+%		\begin{cases}
+%			\begin{aligned}
+%				&&\sum_{j \in \mathbf{J}} n_j(t) \cdot P_j &= e_{G}(t) + e_{T}(t),\,\forall\, t \in \mathbf{T}\\
+%				&&0&\leq e_{G}(t)\leq E_G(t),\,\forall\, t \in \mathbf{H}\\
+%				&&E_T(t)&\geq\sum_{j\in\mathbf{J}} n_j(t)\cdot P_j(t) - E_G(t),\,\forall\,t \in \mathbf{H}\\
+%				&&\sum_{t \in \mathbf{H}} N_j(t) &= \sum_{t \in \mathbf{H}} n_j(t),\,\forall\, j\in \mathbf{J}\\
+%				&&\delta x_j(T_I)&= 0,\,\forall\, T_I \text{ where } U(T_I) = 3
+%			\end{aligned}
+%		\end{cases}
+%	\end{align}
+
+
+%	\begin{figure}[H]
+%		\centering
+%		\includegraphics[width=0.6\linewidth]{figure/DtImpact.jpg}
+%		\caption{$D_I$对总成本和违约概率的影响图。}
+%		\label{fig: D_t's Impact}
+%	\end{figure}
+
+	\newpage
+	\printbibliography[heading=bibintoc]
+
+	\newpage
+	\begin{appendices}
+		\section{Temp}
+	\end{appendices}
+\end{document}
